@@ -1,0 +1,34 @@
+<!-- <ul class="unique-message-container list-group list-group-flush">  
+    
+    {% if not object %}
+        <p class="text-center">Selecione uma sala de bate papo</p>
+    {% else %}
+
+        {% if object.messages.count > 0 %}    
+            {% for m in object.messages.all %}
+                {% include 'chat/message.html' %}
+            {% endfor %}
+        {% else %}
+            <p class="text-center">Nenhuma mensagem enviada ainda...</p>
+        {% endif %}
+
+    {% endif %}
+</ul> -->
+
+
+<ul class="list-group list-group-flush">
+    {% if object.messages.count > 0 %}
+        {% for m in object.messages.all %}
+            <li class="list-group-item bordder-bottom-0">
+                <div class="d-flex justify-content-between">
+                    <div class="content">
+                        <b>@{{m.user.username}}</b> {{m.text}}
+                    </div>
+                    <div class="time ">{{m.created_at}}</div>
+                </div>
+            </li>
+        {% endfor %}
+    {% else %}
+        <p>Nenhuma mensagem enviada ainda</p>
+    {% endif %}
+</ul>
